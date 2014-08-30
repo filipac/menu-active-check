@@ -1,0 +1,20 @@
+{
+    "name": "filipac/menu-active-check",
+    "description": "",
+    "authors": [
+        {
+            "name": "filipac",
+            "email": "hello@filipac.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Filipac\\MenuActiveCheck": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

@@ -18,3 +18,12 @@ Example how to use:
 Explanation: if the current controller is DashboardController the script will echo "active" so that the menu highlights. You can replace ```active``` with any class you want to add to the active menu items. This is a quick and rough package so if you want to make impovements, fork commit & merge request.
 
 I wanted to have this for further Laravel projects.
+
+Installation:
+Add ```"filipac/menu-active-check": "~1.0"``` to the require section of composer.json
+Run ```composer update```
+In /app/config/app.php add the following to the end of **providers** array
+```
+'Filipac\MenuActiveCheck\MenuActiveCheckServiceProvider',
+```
+You are done, now you can use ```{@checkActive ControllerName|css-active-class}``` in your blade files!

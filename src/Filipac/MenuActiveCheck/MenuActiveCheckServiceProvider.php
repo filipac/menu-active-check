@@ -17,14 +17,22 @@ class MenuActiveCheckServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register()
-	{
-		//
-	}
+{
+    /*
+     * Register the service provider for the dependency.
+     */
+    $this->app->register('HieuLe\Active\ActiveServiceProvider');
+    /*
+     * Create aliases for the dependency.
+     */
+    $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+    $loader->alias('Active', 'HieuLe\Active\Facades\Active');
+}
 
   public function boot() {
     Blade::extend(function($view, $compiler)
     {
-        return preg_replace('/(\s*){@checkActive(\s*)([a-zA-Z]*?)\|(.*)}/i', '$1<?php $__check = explode(\'\\\\\\\',Active::getController()); if(\'$3\' == end($__check)) echo \'$4\'; ?>', $view);
+        return preg_replace('/(\s*){@checkActive(\s*)([a-zA-Z]*?)\|(.*)}/i', '$1<?php $__check = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getController()); if(\'$3\' == end($__check)) echo \'$4\'; ?>', $view);
     });
   }
 

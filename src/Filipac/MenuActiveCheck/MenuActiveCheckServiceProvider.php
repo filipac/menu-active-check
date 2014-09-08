@@ -4,19 +4,19 @@ use Illuminate\Support\ServiceProvider, Blade;
 
 class MenuActiveCheckServiceProvider extends ServiceProvider {
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+  /**
+   * Indicates if loading of the provider is deferred.
+   *
+   * @var bool
+   */
+  protected $defer = false;
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
+  /**
+   * Register the service provider.
+   *
+   * @return void
+   */
+  public function register()
 {
     /*
      * Register the service provider for the dependency.
@@ -34,16 +34,20 @@ class MenuActiveCheckServiceProvider extends ServiceProvider {
     {
         return preg_replace('/(\s*){@checkActive(\s*)([a-zA-Z]*?)\|(.*)}/i', '$1<?php $__check = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getController()); if(\'$3\' == end($__check)) echo \'$4\'; ?>', $view);
     });
+    Blade::extend(function($view, $compiler)
+    {
+        return preg_replace('/(\s*){@checkActiveAction(\s*)([a-zA-Z]*?)\|(.*)}/i', '$1<?php $__check = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getMethod()); if(\'$3\' == end($__check)) echo \'$4\'; ?>', $view);
+    });
   }
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array();
-	}
+  /**
+   * Get the services provided by the provider.
+   *
+   * @return array
+   */
+  public function provides()
+  {
+    return array();
+  }
 
 }

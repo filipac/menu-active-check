@@ -46,10 +46,9 @@ class MenuActiveCheckServiceProvider extends ServiceProvider
                 $view);
         });
         Blade::extend(function ($view, $compiler) {
-            return preg_replace('/(\s*){@checkActiveBoth(\s*)([a-zA-Z]*?)&([a-zA-Z]*?)\|(.*)}/i',
-                '$1<?php $__check = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getMethod());
-                $__check2 = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getController()); if(\'$3\' == end($__check2) AND \'$4\' == end($__check)) echo \'$5\'; ?>',
-                $view);
+            return preg_replace('/(\s*){@checkActiveBoth(\s*)([a-zA-Z]*?)&([a-zA-Z]*?)\|(.*?)}/i', '$1<?php $__check = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getMethod());
+                $__check2 = explode(\'\\\\\\\',\HieuLe\Active\Facades\Active::getController());
+                if(\'$3\' == end($__check2) AND \'$4\' == end($__check)) echo \'$5\'; ?>', $view);
         });
     }
 
